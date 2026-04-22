@@ -1,23 +1,17 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Tenant Resources — RateMyLandlordPDX",
-  description:
-    "Know your rights as a Portland tenant. Legal resources, tenant organizations, and how to report housing violations.",
-};
+import { useState } from "react";
 
 const RESOURCES = [
   {
     category: "Tenant Rights Organizations",
-    icon: "⚖️",
     items: [
       {
         name: "Community Alliance of Tenants (CAT)",
         description:
           "Oregon's only statewide renter-rights organization. Offers a Renter Rights Hotline, tenant education workshops, and community organizing support.",
         url: "https://www.oregoncat.org",
-        phone: "503-460-9702",
+        phone: "503-288-0130",
         highlight: "Free Renter Rights Hotline",
       },
       {
@@ -27,18 +21,10 @@ const RESOURCES = [
         url: "https://www.pdxtu.org",
         highlight: "Tenant union organizing",
       },
-      {
-        name: "Oregon Renters Alliance",
-        description:
-          "Statewide coalition advocating for renter protections at the legislative level. Works on rent stabilization, just cause eviction, and tenant screening reform.",
-        url: "https://www.oregonrentersalliance.com",
-        highlight: "Legislative advocacy",
-      },
     ],
   },
   {
     category: "Legal Aid & Free Legal Help",
-    icon: "📋",
     items: [
       {
         name: "Legal Aid Services of Oregon (LASO)",
@@ -53,7 +39,6 @@ const RESOURCES = [
         description:
           "Provides free legal help to low-income tenants across Oregon. Specializes in housing law, fair housing, and public benefits.",
         url: "https://www.oregonlawcenter.org",
-        phone: "503-473-8321",
         highlight: "Housing law specialists",
       },
       {
@@ -64,18 +49,10 @@ const RESOURCES = [
         phone: "503-684-3763",
         highlight: "$35 consultations",
       },
-      {
-        name: "Multnomah County Legal Aid",
-        description:
-          "Court-based legal assistance for eviction cases in Multnomah County. Walk-in help available at the courthouse.",
-        url: "https://www.multco.us/",
-        highlight: "Walk-in eviction defense help",
-      },
     ],
   },
   {
     category: "Report Housing Violations",
-    icon: "🚨",
     items: [
       {
         name: "Portland Housing Bureau — Rental Services",
@@ -89,17 +66,9 @@ const RESOURCES = [
         name: "Oregon Bureau of Labor & Industries (BOLI) — Fair Housing",
         description:
           "File discrimination complaints based on race, color, religion, sex, disability, familial status, national origin, source of income, or sexual orientation.",
-        url: "https://www.oregon.gov/boli/civil-rights/pages/filing-a-complaint.aspx",
+        url: "https://complaints.boli.oregon.gov",
         phone: "971-245-3844",
         highlight: "Housing discrimination complaints",
-      },
-      {
-        name: "Multnomah County Code Enforcement",
-        description:
-          "Report unsafe housing conditions, building code violations, and health hazards. Inspectors can order landlords to make repairs.",
-        url: "https://www.multco.us/",
-        phone: "503-823-2404",
-        highlight: "Building safety inspections",
       },
       {
         name: "Oregon Department of Justice — Consumer Protection",
@@ -113,7 +82,6 @@ const RESOURCES = [
   },
   {
     category: "Know Your Rights — Oregon Tenant Law",
-    icon: "📖",
     items: [
       {
         name: "Oregon Residential Landlord-Tenant Act (ORS 90)",
@@ -136,18 +104,10 @@ const RESOURCES = [
         url: "https://www.oregonlegislature.gov/bills_laws/ors/ors090.html",
         highlight: "31-day return rule",
       },
-      {
-        name: "Repair Rights — Habitability Standards",
-        description:
-          "Your landlord must maintain the property in habitable condition. If they don't, you may have the right to repair and deduct, escrow rent, or terminate your lease.",
-        url: "https://lasoregon.org",
-        highlight: "Repair & deduct rights",
-      },
     ],
   },
   {
     category: "Emergency & Crisis Resources",
-    icon: "🆘",
     items: [
       {
         name: "211info — Housing Crisis Line",
@@ -158,18 +118,11 @@ const RESOURCES = [
         highlight: "24/7 crisis line",
       },
       {
-        name: "Multnomah County Eviction Prevention",
-        description:
-          "Emergency rental assistance and eviction prevention services for Multnomah County residents facing housing instability.",
-        url: "https://www.multco.us/",
-        highlight: "Emergency rental assistance",
-      },
-      {
         name: "Fair Housing Council of Oregon",
         description:
           "Free fair housing testing, education, and complaint assistance. If you believe you've been discriminated against, they can investigate.",
         url: "https://www.fhco.org",
-        phone: "503-223-8197",
+        phone: "503-223-8295",
         highlight: "Discrimination investigation",
       },
     ],
@@ -203,6 +156,29 @@ const QUICK_TIPS = [
   },
 ];
 
+function CollapsibleSection({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="mb-4 border border-gray-200 rounded-xl overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between bg-white px-5 py-4 text-left hover:bg-gray-50 transition-colors"
+      >
+        <h2 className="text-lg font-bold">{title}</h2>
+        <span className="text-gray-400 text-xl">{open ? "−" : "+"}</span>
+      </button>
+      {open && <div className="px-5 pb-5 space-y-4">{children}</div>}
+    </div>
+  );
+}
+
 export default function ResourcesPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -215,7 +191,7 @@ export default function ResourcesPage() {
       {/* Quick Tips */}
       <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-10">
         <h2 className="text-xl font-bold text-emerald-800 mb-4">
-          💡 Quick Tips for Portland Renters
+          Quick Tips for Portland Renters
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           {QUICK_TIPS.map((tip) => (
@@ -231,80 +207,49 @@ export default function ResourcesPage() {
 
       {/* Resource Sections */}
       {RESOURCES.map((section) => (
-        <div key={section.category} className="mb-10">
-          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <span>{section.icon}</span>
-            {section.category}
-          </h2>
-          <div className="space-y-4">
-            {section.items.map((item) => (
-              <div
-                key={item.name}
-                className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow"
-              >
-                <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-lg">{item.name}</h3>
-                    <p className="text-gray-600 text-sm mt-1">
-                      {item.description}
-                    </p>
-                    {item.highlight && (
-                      <span className="inline-block mt-2 bg-amber-100 text-amber-800 text-xs font-medium px-2 py-1 rounded-full">
-                        ⭐ {item.highlight}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-col gap-2 md:items-end shrink-0">
-                    {item.url && (
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors text-center"
-                      >
-                        Visit Website →
-                      </a>
-                    )}
-                    {item.phone && (
-                      <a
-                        href={`tel:${item.phone}`}
-                        className="text-sm text-emerald-600 hover:text-emerald-800 font-medium"
-                      >
-                        📞 {item.phone}
-                      </a>
-                    )}
-                  </div>
+        <CollapsibleSection key={section.category} title={section.category}>
+          {section.items.map((item) => (
+            <div
+              key={item.name}
+              className="bg-gray-50 border border-gray-200 rounded-lg p-4"
+            >
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
+                <div className="flex-1">
+                  <h3 className="font-semibold">{item.name}</h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {item.description}
+                  </p>
+                  {item.highlight && (
+                    <span className="inline-block mt-2 bg-amber-100 text-amber-800 text-xs font-medium px-2 py-1 rounded-full">
+                      {item.highlight}
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-col gap-2 md:items-end shrink-0">
+                  {item.url && (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors text-center"
+                    >
+                      Visit Website
+                    </a>
+                  )}
+                  {item.phone && (
+                    <a
+                      href={`tel:${item.phone}`}
+                      className="text-sm text-emerald-600 hover:text-emerald-800 font-medium"
+                    >
+                      {item.phone}
+                    </a>
+                  )}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          ))}
+        </CollapsibleSection>
       ))}
-
-      {/* CTA */}
-      <div className="bg-gray-100 rounded-xl p-6 text-center">
-        <h2 className="text-xl font-bold mb-2">
-          Had a bad experience with a landlord?
-        </h2>
-        <p className="text-gray-600 mb-4 text-sm">
-          Your anonymous review helps other tenants and builds a record of
-          landlord behavior patterns.
-        </p>
-        <div className="flex justify-center gap-4">
-          <Link
-            href="/review"
-            className="bg-emerald-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-emerald-700 transition-colors text-sm"
-          >
-            Write a Review
-          </Link>
-          <Link
-            href="/caution-list"
-            className="bg-white text-red-600 border border-red-200 px-5 py-2.5 rounded-lg font-semibold hover:bg-red-50 transition-colors text-sm"
-          >
-            View Caution List
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }

@@ -15,18 +15,6 @@ export default async function Home() {
     take: 5,
   });
 
-  // Get top landlords by review count
-  const landlords = await prisma.landlord.findMany({
-    include: {
-      reviews: {
-        select: { overallRating: true, wouldRecommend: true },
-      },
-      _count: { select: { reviews: true, properties: true } },
-    },
-    orderBy: { reviews: { _count: "desc" } },
-    take: 6,
-  });
-
   // Get stats
   const [totalLandlords, totalReviews, totalProperties] = await Promise.all([
     prisma.landlord.count(),
@@ -160,69 +148,6 @@ export default async function Home() {
             >
               Be the First to Write a Review →
             </Link>
-          </div>
-        </section>
-      )}
-
-      {/* Top Reviewed Landlords */}
-      {landlords.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Most Reviewed Landlords</h2>
-            <Link
-              href="/search"
-              className="text-emerald-600 hover:text-emerald-700 text-sm font-medium"
-            >
-              View all →
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {landlords.map((landlord) => {
-              const avgRating =
-                landlord.reviews.length > 0
-                  ? landlord.reviews.reduce((s, r) => s + r.overallRating, 0) /
-                    landlord.reviews.length
-                  : 0;
-              const recommendPct =
-                landlord.reviews.length > 0
-                  ? Math.round(
-                      (landlord.reviews.filter((r) => r.wouldRecommend).length /
-                        landlord.reviews.length) *
-                        100
-                    )
-                  : 0;
-
-              return (
-                <Link
-                  key={landlord.id}
-                  href={`/landlord/${landlord.id}`}
-                  className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h3 className="font-semibold text-lg">{landlord.name}</h3>
-                      {landlord.company && (
-                        <p className="text-gray-500 text-sm">{landlord.company}</p>
-                      )}
-                    </div>
-                    <span className="bg-emerald-100 text-emerald-700 text-xs font-medium px-2 py-1 rounded-full">
-                      {landlord.city}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <StarRating rating={Math.round(avgRating)} size="sm" />
-                    <span className="text-sm text-gray-600">
-                      {avgRating.toFixed(1)} ({landlord._count.reviews}{" "}
-                      {landlord._count.reviews === 1 ? "review" : "reviews"})
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-xs text-gray-500">
-                    <span>{landlord._count.properties} properties</span>
-                    <span>{recommendPct}% would recommend</span>
-                  </div>
-                </Link>
-              );
-            })}
           </div>
         </section>
       )}

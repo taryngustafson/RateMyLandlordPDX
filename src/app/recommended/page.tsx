@@ -96,7 +96,6 @@ export default async function RecommendedPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-3xl">🏆</span>
         <h1 className="text-3xl font-bold">Recommended Landlords</h1>
       </div>
       <p className="text-gray-500 mb-2">
@@ -111,7 +110,7 @@ export default async function RecommendedPage() {
 
       {recommendedLandlords.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-xl border border-gray-200">
-          <p className="text-4xl mb-4">📝</p>
+          <p className="text-4xl mb-4 text-gray-300">—</p>
           <h3 className="text-lg font-semibold mb-2">
             Not enough reviews yet
           </h3>
@@ -135,13 +134,13 @@ export default async function RecommendedPage() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-1">
                     {index < 3 && (
-                      <span className="text-xl">
-                        {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                      <span className="text-sm font-bold text-emerald-600">
+                        #{index + 1}
                       </span>
                     )}
                     <h3 className="font-semibold text-lg">{l.name}</h3>
                     <span className="bg-emerald-100 text-emerald-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                      ✓ Recommended
+                      Recommended
                     </span>
                   </div>
                   {l.company && (
@@ -151,7 +150,7 @@ export default async function RecommendedPage() {
 
                   <div className="flex flex-wrap gap-2 mt-2">
                     <span className="bg-emerald-50 text-emerald-700 text-xs px-2 py-0.5 rounded">
-                      ⭐ Best at: {l.strongestCategory}
+                      Best at: {l.strongestCategory}
                     </span>
                     {l.neighborhoods.slice(0, 3).map((n) => (
                       <span

@@ -140,7 +140,7 @@ export default async function CautionListPage() {
                   <div className="flex items-center gap-3 mb-1">
                     <h3 className="font-semibold text-lg">{l.name}</h3>
                     <span className="bg-red-100 text-red-700 text-xs font-medium px-2 py-0.5 rounded-full">
-                      ⚠️ Caution
+                      Caution
                     </span>
                   </div>
                   {l.company && (
@@ -156,7 +156,7 @@ export default async function CautionListPage() {
                           key={flag}
                           className="bg-red-50 text-red-600 text-xs px-2 py-0.5 rounded"
                         >
-                          🚩 {flag}
+                          {flag}
                         </span>
                       ))}
                     </div>
