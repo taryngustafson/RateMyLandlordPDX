@@ -19,16 +19,14 @@ export default async function Home() {
 
   return (
     <div>
-      {/* Hero — subtle, not salesy */}
-      <section className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white py-6">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-lg font-semibold mb-1">
-            Portland landlord reviews, by tenants
-          </h1>
-          <p className="text-sm text-emerald-200">
-            Anonymous reviews from real renters across the Portland metro area.
-          </p>
-        </div>
+      {/* Header */}
+      <section className="max-w-4xl mx-auto px-4 pt-8 pb-2">
+        <h1 className="text-lg font-semibold text-emerald-800 mb-1">
+          Landlord reviews by tenants, for tenants
+        </h1>
+        <p className="text-sm text-gray-500">
+          Helping Portland-area renters share experiences and look out for each other.
+        </p>
       </section>
 
       {/* Search + Write a Review */}

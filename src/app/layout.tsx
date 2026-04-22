@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-gray-50 text-gray-900">
+      <body className="min-h-full flex flex-col text-gray-900">
         {/* Navigation */}
         <header className="bg-emerald-950 text-white shadow-md">
           <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
