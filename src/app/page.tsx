@@ -19,28 +19,32 @@ export default async function Home() {
 
   return (
     <div>
-      {/* Main content */}
-      <section className="max-w-3xl mx-auto px-4 pt-10 pb-6">
-        <h1 className="text-xl font-semibold text-gray-900 mb-2">
-          Portland landlord reviews, by tenants
-        </h1>
-        <p className="text-sm text-gray-500 mb-6">
-          Search landlords, read anonymous reviews, or share your experience.
-        </p>
+      {/* Hero — subtle, not salesy */}
+      <section className="bg-emerald-700 text-white py-6">
+        <div className="max-w-4xl mx-auto px-4">
+          <h1 className="text-lg font-semibold mb-1">
+            Portland landlord reviews, by tenants
+          </h1>
+          <p className="text-sm text-emerald-200">
+            Anonymous reviews from real renters across the Portland metro area.
+          </p>
+        </div>
+      </section>
 
-        {/* Search + Review actions */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-8">
+      {/* Search + Write a Review */}
+      <section className="max-w-4xl mx-auto px-4 py-6">
+        <div className="flex flex-col sm:flex-row gap-3">
           <form action="/search" method="GET" className="flex-1">
             <div className="flex rounded-lg overflow-hidden border border-gray-300">
               <input
                 type="text"
                 name="q"
                 placeholder="Search by landlord name or company..."
-                className="flex-1 bg-white px-3 py-2 text-gray-900 text-sm focus:outline-none"
+                className="flex-1 bg-white px-3 py-2.5 text-gray-900 text-sm focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 text-sm font-medium transition-colors border-l border-gray-300"
+                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2.5 text-sm font-medium transition-colors border-l border-gray-300"
               >
                 Search
               </button>
@@ -48,7 +52,7 @@ export default async function Home() {
           </form>
           <Link
             href="/review"
-            className="bg-emerald-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors text-center"
+            className="bg-emerald-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors text-center"
           >
             Write a Review
           </Link>
@@ -56,9 +60,9 @@ export default async function Home() {
       </section>
 
       {/* Browse by City */}
-      <section className="max-w-3xl mx-auto px-4 pb-8">
-        <h2 className="text-sm font-semibold text-gray-700 mb-3">Browse by city</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      <section className="max-w-4xl mx-auto px-4 pb-8">
+        <h2 className="text-sm font-medium text-gray-500 mb-3">Browse by city</h2>
+        <div className="flex flex-wrap gap-2">
           {[
             "Portland",
             "Beaverton",
@@ -76,7 +80,7 @@ export default async function Home() {
             <Link
               key={city}
               href={`/search?city=${encodeURIComponent(city)}`}
-              className="bg-white border border-gray-200 rounded px-3 py-2 text-center hover:border-emerald-400 transition-colors text-xs font-medium text-gray-700"
+              className="bg-white border border-gray-200 rounded-full px-4 py-1.5 hover:border-emerald-400 transition-colors text-sm text-gray-700"
             >
               {city}
             </Link>
@@ -86,25 +90,25 @@ export default async function Home() {
 
       {/* How It Works — shown when no reviews exist yet */}
       {recentReviews.length === 0 && (
-        <section className="max-w-3xl mx-auto px-4 py-6">
-          <h2 className="text-sm font-semibold text-gray-700 mb-3">How it works</h2>
+        <section className="max-w-4xl mx-auto px-4 py-6 border-t border-gray-200">
+          <h2 className="text-sm font-medium text-gray-500 mb-4">How it works</h2>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <p className="text-xs font-semibold text-emerald-600 mb-1">1. Find</p>
-              <p className="text-xs text-gray-600">
-                Search for your landlord or property management company.
+            <div className="bg-white border border-gray-200 rounded-lg p-5">
+              <p className="text-sm font-semibold text-emerald-700 mb-1">1. Find your landlord</p>
+              <p className="text-sm text-gray-600">
+                Search by name or company. If they&apos;re not listed yet, add them.
               </p>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <p className="text-xs font-semibold text-emerald-600 mb-1">2. Review</p>
-              <p className="text-xs text-gray-600">
-                Rate them across 5 categories. Completely anonymous.
+            <div className="bg-white border border-gray-200 rounded-lg p-5">
+              <p className="text-sm font-semibold text-emerald-700 mb-1">2. Write a review</p>
+              <p className="text-sm text-gray-600">
+                Rate across 5 categories. No account needed, fully anonymous.
               </p>
             </div>
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <p className="text-xs font-semibold text-emerald-600 mb-1">3. Help others</p>
-              <p className="text-xs text-gray-600">
-                Your review helps other tenants make informed decisions.
+            <div className="bg-white border border-gray-200 rounded-lg p-5">
+              <p className="text-sm font-semibold text-emerald-700 mb-1">3. Help other tenants</p>
+              <p className="text-sm text-gray-600">
+                Your review helps renters make better decisions before signing a lease.
               </p>
             </div>
           </div>
@@ -113,8 +117,8 @@ export default async function Home() {
 
       {/* Recent Reviews */}
       {recentReviews.length > 0 && (
-        <section className="max-w-3xl mx-auto px-4 py-6">
-          <h2 className="text-sm font-semibold text-gray-700 mb-3">Recent reviews</h2>
+        <section className="max-w-4xl mx-auto px-4 py-6 border-t border-gray-200">
+          <h2 className="text-sm font-medium text-gray-500 mb-4">Recent reviews</h2>
           <div className="space-y-4">
             {recentReviews.map((review) => (
               <div
