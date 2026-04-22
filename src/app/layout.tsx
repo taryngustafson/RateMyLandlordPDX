@@ -57,7 +57,7 @@ export default function RootLayout({
               </Link>
               <Link
                 href="/review"
-                className="bg-white text-emerald-700 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-50 transition-colors"
+                className="text-emerald-100 hover:text-white transition-colors text-sm font-medium"
               >
                 Write a Review
               </Link>

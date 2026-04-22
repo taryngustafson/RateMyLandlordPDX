@@ -39,17 +39,17 @@ export default async function Home() {
           </p>
 
           {/* Search Bar */}
-          <form action="/search" method="GET" className="max-w-xl mx-auto">
-            <div className="flex rounded-xl overflow-hidden shadow-lg">
+          <form action="/search" method="GET" className="max-w-md mx-auto">
+            <div className="flex rounded-lg overflow-hidden shadow-md">
               <input
                 type="text"
                 name="q"
                 placeholder="Search by landlord name or company..."
-                className="flex-1 bg-white px-5 py-4 text-gray-900 text-lg focus:outline-none"
+                className="flex-1 bg-white px-4 py-2.5 text-gray-900 text-sm focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-amber-400 hover:bg-amber-500 text-gray-900 px-6 py-4 font-semibold transition-colors"
+                className="bg-amber-400 hover:bg-amber-500 text-gray-900 px-4 py-2.5 text-sm font-semibold transition-colors"
               >
                 Search
               </button>
@@ -58,8 +58,21 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Write a Review CTA */}
+      <section className="max-w-4xl mx-auto px-4 py-8 text-center">
+        <Link
+          href="/review"
+          className="inline-block bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-colors shadow-md"
+        >
+          Write an Anonymous Review
+        </Link>
+        <p className="text-gray-500 text-sm mt-3">
+          No account needed. Help fellow tenants make informed decisions.
+        </p>
+      </section>
+
       {/* Quick Stats */}
-      <section className="max-w-4xl mx-auto px-4 py-6">
+      <section className="max-w-4xl mx-auto px-4 py-4">
         <div className="flex justify-center gap-10">
           <div className="text-center">
             <p className="text-3xl font-bold text-emerald-700">{totalLandlords}</p>
