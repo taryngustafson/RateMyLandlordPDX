@@ -4,7 +4,7 @@
 
 ## Why This Exists
 
-Portland has a serious rental affordability and landlord accountability problem. Tenants often have no way to know what they're getting into before signing a lease — and by the time they find out, they're locked in.
+Portland has a landlord accountability problem. Tenants often have no way to know what they're getting into before signing a lease, and by the time they find out, they're locked in.
 
 I built **RateMyLandlordPDX** to give tenants a shared place to warn each other about problem landlords and highlight the good ones. No account required, fully anonymous, and focused specifically on the Portland metro area.
 
@@ -13,21 +13,21 @@ I built **RateMyLandlordPDX** to give tenants a shared place to warn each other 
 - **Search landlords** by name, company, phone number, email, or property address
 - **Write anonymous reviews** with ratings across 5 categories (overall, responsiveness, maintenance, fairness, communication)
 - **Browse by city** across the Portland metro area (Portland, Beaverton, Gresham, Tigard, Lake Oswego, and more)
-- **Recommended list** — landlords with high ratings and strong recommendation rates, ranked automatically
-- **Caution list** — landlords with consistently poor reviews or red flag keywords (mold, deposit theft, harassment, etc.), auto-generated from review data
-- **Tenant resources** — curated links to Oregon tenant rights organizations, free legal aid, how to report housing violations, and key Oregon landlord-tenant laws
-- **Duplicate detection** — when adding a landlord, the app checks for existing entries to prevent duplicates
-- **Alias matching** — landlords are searchable by all their known names (e.g., "Guardian" finds "Guardian Real Estate Services" / "Guardian Management LLC")
+- **Recommended list**: landlords with high ratings and strong recommendation rates, ranked automatically
+- **Caution list**: landlords with consistently poor reviews or red flag keywords (mold, deposit theft, harassment, etc.), auto-generated from review data
+- **Tenant resources**: curated links to Oregon tenant rights organizations, free legal aid, how to report housing violations, and key Oregon landlord-tenant laws
+- **Duplicate detection**: when adding a landlord, the app checks for existing entries to prevent duplicates
+- **Alias matching**: landlords are searchable by all their known names (e.g., "Guardian" finds "Guardian Real Estate Services" / "Guardian Management LLC")
 
 ## Tech Stack
 
-- **Next.js 16** (App Router) — full-stack React framework
-- **React 19** — UI components
-- **TypeScript** — type safety throughout
-- **Tailwind CSS 4** — utility-first styling
-- **Prisma 7** — database ORM and schema management
-- **SQLite** (via better-sqlite3) — lightweight local database (production would use PostgreSQL)
-- **Turbopack** — fast dev server bundling
+- **Next.js 16** (App Router): full-stack React framework
+- **React 19**: UI components
+- **TypeScript**: type safety throughout
+- **Tailwind CSS 4**: utility-first styling
+- **Prisma 7**: database ORM and schema management
+- **SQLite** (via better-sqlite3): lightweight local database (production would use PostgreSQL)
+- **Turbopack**: fast dev server bundling
 
 ## Project Structure
 
