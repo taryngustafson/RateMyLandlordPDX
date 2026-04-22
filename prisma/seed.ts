@@ -1,11 +1,8 @@
+import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client.js";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { PrismaNeon } from "@prisma/adapter-neon";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dbPath = path.join(__dirname, "dev.db");
-const adapter = new PrismaBetterSqlite3({ url: dbPath });
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
 // Helper: build searchName from all identifying info so any search path finds the entity
