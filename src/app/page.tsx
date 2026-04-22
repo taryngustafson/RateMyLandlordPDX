@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <div>
       {/* Hero — subtle, not salesy */}
-      <section className="bg-emerald-700 text-white py-6">
+      <section className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white py-6">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-lg font-semibold mb-1">
             Portland landlord reviews, by tenants
