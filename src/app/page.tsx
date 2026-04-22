@@ -37,14 +37,14 @@ export default async function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white py-16">
+      <section className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white py-8">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Know Your Landlord
             <br />
             <span className="text-emerald-200">Before You Sign</span>
           </h1>
-          <p className="text-lg text-emerald-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-base text-emerald-100 mb-6 max-w-2xl mx-auto">
             Anonymous reviews from real Portland metro area tenants. Search
             landlords, read reviews, and share your experience — no account
             needed.
@@ -57,7 +57,7 @@ export default async function Home() {
                 type="text"
                 name="q"
                 placeholder="Search by landlord name or company..."
-                className="flex-1 px-5 py-4 text-gray-900 text-lg focus:outline-none"
+                className="flex-1 bg-white px-5 py-4 text-gray-900 text-lg focus:outline-none"
               />
               <button
                 type="submit"
@@ -67,21 +67,23 @@ export default async function Home() {
               </button>
             </div>
           </form>
+        </div>
+      </section>
 
-          {/* Quick Stats */}
-          <div className="flex justify-center gap-8 mt-10">
-            <div className="text-center">
-              <p className="text-3xl font-bold">{totalLandlords}</p>
-              <p className="text-emerald-200 text-sm">Landlords</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold">{totalReviews}</p>
-              <p className="text-emerald-200 text-sm">Reviews</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl font-bold">{totalProperties}</p>
-              <p className="text-emerald-200 text-sm">Properties</p>
-            </div>
+      {/* Quick Stats */}
+      <section className="max-w-4xl mx-auto px-4 py-6">
+        <div className="flex justify-center gap-10">
+          <div className="text-center">
+            <p className="text-3xl font-bold text-emerald-700">{totalLandlords}</p>
+            <p className="text-emerald-600 text-sm font-medium">Landlords</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl font-bold text-emerald-700">{totalReviews}</p>
+            <p className="text-emerald-600 text-sm font-medium">Reviews</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl font-bold text-emerald-700">{totalProperties}</p>
+            <p className="text-emerald-600 text-sm font-medium">Properties</p>
           </div>
         </div>
       </section>

@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-gray-50 text-gray-900">
         {/* Navigation */}
-        <header className="bg-emerald-700 text-white shadow-md">
+        <header className="bg-emerald-950 text-white shadow-md">
           <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold tracking-tight">
@@ -69,7 +69,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
 
         {/* Footer */}
-        <footer className="bg-gray-800 text-gray-400 py-8 mt-12">
+        <footer className="bg-emerald-950 text-emerald-300 py-8 mt-12">
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div>
@@ -101,7 +101,7 @@ export default function RootLayout({
                 </Link>
               </div>
             </div>
-            <div className="border-t border-gray-700 mt-6 pt-4 text-center text-xs">
+            <div className="border-t border-emerald-800 mt-6 pt-4 text-center text-xs">
               <p>
                 This site is for informational purposes. Reviews reflect individual
                 tenant experiences and opinions.
