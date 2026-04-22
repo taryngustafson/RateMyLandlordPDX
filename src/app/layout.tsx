@@ -20,17 +20,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col text-gray-900">
+    <html lang="en" className={`${geistSans.variable} h-full antialiased overflow-x-hidden`}>
+      <body className="min-h-full flex flex-col text-gray-900 min-w-0 overflow-x-hidden">
         {/* Navigation */}
         <header className="bg-emerald-950 text-white shadow-md">
-          <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+          <nav className="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-2">
             <Link href="/" className="flex items-center gap-2">
               <span className="text-lg font-bold tracking-tight">
                 RateMyLandlord<span className="text-emerald-300">PDX</span>
               </span>
             </Link>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
               <Link
                 href="/search"
                 className="text-emerald-100 hover:text-white transition-colors text-sm font-medium"
