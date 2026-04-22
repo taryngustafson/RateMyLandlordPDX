@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Landlord {
+  id          String   @id @default(cuid())
+  name        String
+  company     String?
+  city        String
+  state       String   @default("OR")
+  website     String?
+  phone       String?
+  email       String?
+  searchName  String   @default("") // lowercase name+company+aliases+contact for fuzzy matching
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  aliases     LandlordAlias[]
+  properties  Property[]
+  reviews     Review[]
+  managementHistory PropertyManagement[]
+}
+
+// Alternate names people might know a landlord by
+model LandlordAlias {
+  id          String   @id @default(cuid())
+  alias       String
+  landlordId  String
+  createdAt   DateTime @default(now())
+
+  landlord    Landlord @relation(fields: [landlordId], references: [id], onDelete: Cascade)
+}
+
+model Property {
+  id          String   @id @default(cuid())
+  address     String
+  unit        String?
+  city        String
+  state       String   @default("OR")
+  zipCode     String
+  neighborhood String?
+  complexName String?  // e.g. "The Yards at Union Station"
+  propertyType String  @default("apartment") // apartment, house, condo, townhouse, duplex
+  landlordId  String
+  createdAt   DateTime @default(now())
+
+  landlord    Landlord @relation(fields: [landlordId], references: [id], onDelete: Cascade)
+  reviews     Review[]
+  managementHistory PropertyManagement[]
+}
+
+// Tracks which landlords have managed a property over time
+model PropertyManagement {
+  id          String   @id @default(cuid())
+  propertyId  String
+  landlordId  String
+  startYear   Int?
+  endYear     Int?     // null = current manager
+  source      String   @default("user") // "user", "seed", "public_record"
+  createdAt   DateTime @default(now())
+
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  landlord    Landlord @relation(fields: [landlordId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id                String   @id @default(cuid())
+  landlordId        String
+  propertyId        String?
+  
+  // Rating categories (1-5 stars)
+  overallRating     Int
+  responsivenessRating Int
+  maintenanceRating Int
+  fairnessRating    Int
+  communicationRating Int
+  
+  // Review content
+  title             String
+  body              String
+  pros              String?
+  cons              String?
+  
+  // Tenancy details
+  leaseStartYear    Int?
+  leaseEndYear      Int?
+  rentAmount         Int?
+  wouldRecommend    Boolean  @default(false)
+  
+  createdAt         DateTime @default(now())
+  
+  landlord          Landlord @relation(fields: [landlordId], references: [id], onDelete: Cascade)
+  property          Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+}
