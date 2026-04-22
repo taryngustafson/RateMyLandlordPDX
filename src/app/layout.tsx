@@ -26,8 +26,8 @@ export default function RootLayout({
         <header className="bg-emerald-950 text-white shadow-md">
           <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight">
-                RateMyLandlord<span className="text-emerald-200">PDX</span>
+              <span className="text-base font-semibold tracking-tight">
+                RateMyLandlord<span className="text-emerald-300">PDX</span>
               </span>
             </Link>
             <div className="flex items-center gap-4">

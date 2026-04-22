@@ -15,83 +15,49 @@ export default async function Home() {
     take: 5,
   });
 
-  // Get stats
-  const [totalLandlords, totalReviews, totalProperties] = await Promise.all([
-    prisma.landlord.count(),
-    prisma.review.count(),
-    prisma.property.count(),
-  ]);
+
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-600 text-white py-8">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
-            Know Your Landlord
-            <br />
-            <span className="text-emerald-200">Before You Sign</span>
-          </h1>
-          <p className="text-base text-emerald-100 mb-6 max-w-2xl mx-auto">
-            Anonymous reviews from real Portland metro area tenants. Search
-            landlords, read reviews, and share your experience — no account
-            needed.
-          </p>
+      {/* Main content */}
+      <section className="max-w-3xl mx-auto px-4 pt-10 pb-6">
+        <h1 className="text-xl font-semibold text-gray-900 mb-2">
+          Portland landlord reviews, by tenants
+        </h1>
+        <p className="text-sm text-gray-500 mb-6">
+          Search landlords, read anonymous reviews, or share your experience.
+        </p>
 
-          {/* Search Bar */}
-          <form action="/search" method="GET" className="max-w-md mx-auto">
-            <div className="flex rounded-lg overflow-hidden shadow-md">
+        {/* Search + Review actions */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-8">
+          <form action="/search" method="GET" className="flex-1">
+            <div className="flex rounded-lg overflow-hidden border border-gray-300">
               <input
                 type="text"
                 name="q"
                 placeholder="Search by landlord name or company..."
-                className="flex-1 bg-white px-4 py-2.5 text-gray-900 text-sm focus:outline-none"
+                className="flex-1 bg-white px-3 py-2 text-gray-900 text-sm focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-amber-400 hover:bg-amber-500 text-gray-900 px-4 py-2.5 text-sm font-semibold transition-colors"
+                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 text-sm font-medium transition-colors border-l border-gray-300"
               >
                 Search
               </button>
             </div>
           </form>
+          <Link
+            href="/review"
+            className="bg-emerald-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors text-center"
+          >
+            Write a Review
+          </Link>
         </div>
       </section>
 
-      {/* Write a Review CTA */}
-      <section className="max-w-4xl mx-auto px-4 py-8 text-center">
-        <Link
-          href="/review"
-          className="inline-block bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-colors shadow-md"
-        >
-          Write an Anonymous Review
-        </Link>
-        <p className="text-gray-500 text-sm mt-3">
-          No account needed. Help fellow tenants make informed decisions.
-        </p>
-      </section>
-
-      {/* Quick Stats */}
-      <section className="max-w-4xl mx-auto px-4 py-4">
-        <div className="flex justify-center gap-10">
-          <div className="text-center">
-            <p className="text-3xl font-bold text-emerald-700">{totalLandlords}</p>
-            <p className="text-emerald-600 text-sm font-medium">Landlords</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-emerald-700">{totalReviews}</p>
-            <p className="text-emerald-600 text-sm font-medium">Reviews</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-emerald-700">{totalProperties}</p>
-            <p className="text-emerald-600 text-sm font-medium">Properties</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Portland Metro Cities */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-6">Browse by City</h2>
+      {/* Browse by City */}
+      <section className="max-w-3xl mx-auto px-4 pb-8">
+        <h2 className="text-sm font-semibold text-gray-700 mb-3">Browse by city</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {[
             "Portland",
@@ -110,7 +76,7 @@ export default async function Home() {
             <Link
               key={city}
               href={`/search?city=${encodeURIComponent(city)}`}
-              className="bg-white border border-gray-200 rounded-lg px-4 py-3 text-center hover:border-emerald-400 hover:shadow-md transition-all text-sm font-medium"
+              className="bg-white border border-gray-200 rounded px-3 py-2 text-center hover:border-emerald-400 transition-colors text-xs font-medium text-gray-700"
             >
               {city}
             </Link>
@@ -120,55 +86,35 @@ export default async function Home() {
 
       {/* How It Works — shown when no reviews exist yet */}
       {recentReviews.length === 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-10">
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            How It Works
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white border border-gray-200 rounded-xl p-6 text-center">
-              <p className="text-4xl mb-3 font-bold text-emerald-600">1</p>
-              <h3 className="font-semibold text-lg mb-2">Find Your Landlord</h3>
-              <p className="text-gray-600 text-sm">
-                Search by address, landlord name, phone number, or email. If
-                they&apos;re not in our system yet, add them in seconds.
+        <section className="max-w-3xl mx-auto px-4 py-6">
+          <h2 className="text-sm font-semibold text-gray-700 mb-3">How it works</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <p className="text-xs font-semibold text-emerald-600 mb-1">1. Find</p>
+              <p className="text-xs text-gray-600">
+                Search for your landlord or property management company.
               </p>
             </div>
-            <div className="bg-white border border-gray-200 rounded-xl p-6 text-center">
-              <p className="text-4xl mb-3 font-bold text-emerald-600">2</p>
-              <h3 className="font-semibold text-lg mb-2">Write Your Review</h3>
-              <p className="text-gray-600 text-sm">
-                Rate your landlord across 5 categories. Share the good, the bad,
-                and the details. Completely anonymous — no account needed.
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <p className="text-xs font-semibold text-emerald-600 mb-1">2. Review</p>
+              <p className="text-xs text-gray-600">
+                Rate them across 5 categories. Completely anonymous.
               </p>
             </div>
-            <div className="bg-white border border-gray-200 rounded-xl p-6 text-center">
-              <p className="text-4xl mb-3 font-bold text-emerald-600">3</p>
-              <h3 className="font-semibold text-lg mb-2">Help Fellow Tenants</h3>
-              <p className="text-gray-600 text-sm">
-                Your review helps others make informed decisions. Landlords with
-                patterns of issues get flagged on our{" "}
-                <Link href="/caution-list" className="text-red-600 hover:underline">
-                  Caution List
-                </Link>
-                .
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <p className="text-xs font-semibold text-emerald-600 mb-1">3. Help others</p>
+              <p className="text-xs text-gray-600">
+                Your review helps other tenants make informed decisions.
               </p>
             </div>
-          </div>
-          <div className="text-center mt-8">
-            <Link
-              href="/review"
-              className="bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors text-lg"
-            >
-              Be the First to Write a Review →
-            </Link>
           </div>
         </section>
       )}
 
       {/* Recent Reviews */}
       {recentReviews.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-2xl font-bold mb-6">Recent Reviews</h2>
+        <section className="max-w-3xl mx-auto px-4 py-6">
+          <h2 className="text-sm font-semibold text-gray-700 mb-3">Recent reviews</h2>
           <div className="space-y-4">
             {recentReviews.map((review) => (
               <div
@@ -213,32 +159,7 @@ export default async function Home() {
         </section>
       )}
 
-      {/* CTA */}
-      <section className="bg-emerald-50 py-12 mt-8">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-3">
-            Had a rental experience in Portland?
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Help fellow tenants by sharing your anonymous review. No account
-            required.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Link
-              href="/review"
-              className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
-            >
-              Write a Review
-            </Link>
-            <Link
-              href="/add-landlord"
-              className="bg-white text-emerald-700 border border-emerald-300 px-6 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
-            >
-              Add a Landlord
-            </Link>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 }
