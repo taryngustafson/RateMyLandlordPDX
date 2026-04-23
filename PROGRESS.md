@@ -16,6 +16,7 @@
 - **Final design:** faint green-tinted background, dark green nav/footer, clean layout with search + Write a Review side by side, pill-style city browse, subtle "How it works" cards
 
 ### What's next
-- Interactive SVG/map of Portland metro area for browsing by city (replace the pill buttons)
+- **Rankings page** — combine "Top Rated" and "Caution List" into one sortable rankings page (sort highest or lowest rated)
+- **Interactive map** — SVG/map of Portland metro area for browsing by city (replace the pill buttons)
 - Continue refining the design and adding features
 - Get real user reviews flowing in
