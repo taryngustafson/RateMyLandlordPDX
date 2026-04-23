@@ -44,12 +44,6 @@ export default function RootLayout({
                 Top Rated
               </Link>
               <Link
-                href="/caution-list"
-                className="text-emerald-100 hover:text-white transition-colors text-sm font-medium"
-              >
-                Caution
-              </Link>
-              <Link
                 href="/resources"
                 className="text-emerald-100 hover:text-white transition-colors text-sm font-medium"
               >
@@ -86,9 +80,6 @@ export default function RootLayout({
                 </Link>
                 <Link href="/recommended" className="hover:text-white transition-colors">
                   Top Rated
-                </Link>
-                <Link href="/caution-list" className="hover:text-white transition-colors">
-                  Caution List
                 </Link>
                 <Link href="/resources" className="hover:text-white transition-colors">
                   Tenant Resources

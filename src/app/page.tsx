@@ -49,16 +49,18 @@ export default async function Home() {
             </div>
           </form>
           <Link
-            href="/review"
-            className="bg-emerald-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors text-center"
-          >
-            Write a Review
-          </Link>
-          <Link
             href="/add-landlord"
             className="bg-white text-emerald-700 border border-emerald-300 px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-50 transition-colors text-center"
           >
             Add a Landlord
+          </Link>
+        </div>
+        <div className="mt-3">
+          <Link
+            href="/review"
+            className="inline-block bg-emerald-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
+          >
+            Write a Review
           </Link>
         </div>
       </section>
