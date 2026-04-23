@@ -25,11 +25,11 @@ export default async function Home() {
           Landlord reviews by tenants, for tenants
         </h1>
         <p className="text-sm text-gray-500">
-          Helping Portland-area renters share experiences and look out for each other.
+          Search landlords, read anonymous reviews, or share your experience.
         </p>
       </section>
 
-      {/* Search + Write a Review */}
+      {/* Search + Actions */}
       <section className="max-w-4xl mx-auto px-4 py-6">
         <div className="flex flex-col sm:flex-row gap-3">
           <form action="/search" method="GET" className="flex-1">
@@ -53,6 +53,12 @@ export default async function Home() {
             className="bg-emerald-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors text-center"
           >
             Write a Review
+          </Link>
+          <Link
+            href="/add-landlord"
+            className="bg-white text-emerald-700 border border-emerald-300 px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-emerald-50 transition-colors text-center"
+          >
+            Add a Landlord
           </Link>
         </div>
       </section>
